@@ -1,0 +1,13 @@
+	table, th, td { border-style:solid; border:1; text-align: left}
+	table {width:300; border-collapse: collapse}
+	.vinid {width:50px; text-align:center}
+	.make  {width:100px; text-align:left}
+	.model {width:250px; text-align:left}
+	.date  {width:100px; text-align:left}
+	.color {width:50px; text-align:left}
+	.trans {width:50px; text-align:left}
+	.seats {width:50px; text-align:center}
+	.mpg   {width:50px; text-align:right}
+	label {color:blue; font-size:small}
+	h2 {color:blue}
+	input[type=submit] {background-color:blue; color:white; padding:5px 10px; margin:4px 2px}
