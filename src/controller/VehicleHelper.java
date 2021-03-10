@@ -18,6 +18,14 @@ public class VehicleHelper {
 		em.getTransaction().commit();
 		em.close();
 	}
+
+	public void update(Vehicle v) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(v);
+		em.getTransaction().commit();
+		em.close();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Vehicle> findAll() {
@@ -37,7 +45,7 @@ public class VehicleHelper {
 	public void deleteVehicle(int id) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		Vehicle vehicle = findById(id);
+		Vehicle vehicle = em.find(Vehicle.class, id);
 		em.remove(vehicle);
 		em.getTransaction().commit();
 		em.close();

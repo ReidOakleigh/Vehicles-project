@@ -78,6 +78,30 @@ public class Vehicle {
 	}
 
 	
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setManDate(LocalDate manDate) {
+		this.manDate = manDate;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setTrans(String trans) {
+		this.trans = trans;
+	}
+
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
+
+	public void setMpg(BigDecimal mpg) {
+		this.mpg = mpg;
+	}
+
 	@Override
 	public String toString() {
 		return "Vehicle [vinId=" + vinId + ", model=" + model + ", manDate=" + manDate + 

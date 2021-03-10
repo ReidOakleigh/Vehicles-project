@@ -7,9 +7,14 @@
 <title>Add Vehicle</title>
 </head>
 <body>
-	<form action="addVehicleServlet" method="post">
-		<label>Make</label><br/>
-		<input class="make"  type="text" name="make"><br/>
+<h2>Add Vehicle</h2>
+	<form action="addVehicle" method="post">
+		<label>Make</label>
+	    	<select name="make" size="2" required>
+			<c:forEach items="${requestScope.mfgrs}" var="mfgr">
+				<option value="${mfgr.manId}">${mfgr.manufacturerName}</option>
+			</c:forEach>
+		</select> <br /> 
 		<label>Model</label><br/>
 		<input class="model" type="text" name="model"><br/>
 		<label>Mfg. Date (yyyy/mm/dd)</label><br/>

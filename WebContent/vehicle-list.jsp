@@ -9,7 +9,7 @@
 </head>
 <body>
   <h2>Vehicle List</h2>
-  <form method="post" action="navigationServlet">
+  <form method="post" action="chgVehicle">
 	<table>
 		<thead>
 			<tr>
@@ -40,8 +40,8 @@
 		  </c:forEach>
 		</tbody>
 	</table>
-	<input type="submit" value="edit"   name="editVehicle">
-	<input type="submit" value="delete" name="deleteVehicle">
+	<input type="submit" value="edit"   name="updateVehicle">
+	<input type="submit" value="delete" name="updateVehicle">
   </form>
   <br/>
   <a href="index.html">Main Menu</a>

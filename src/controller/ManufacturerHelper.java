@@ -31,16 +31,16 @@ public class ManufacturerHelper {
 		return manufacturers;
 	}
 	
-	public Manufacturer findManufacturer(String make) {
+	public Manufacturer findById(int manId) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Manufacturer> typedQuery = 
 				em.createQuery("select m from Manufacturer m "
-						+ "where m.manufacturerName = :selectedMfgr", Manufacturer.class);
-		typedQuery.setParameter("selectedMfgr", make);
-		List<Manufacturer> manufacturers = typedQuery.getResultList();
+						+ "where m.manId = :selectedMfgr", Manufacturer.class);
+		typedQuery.setParameter("selectedMfgr", manId);
+		Manufacturer manufacturer = typedQuery.getSingleResult();
 		em.close();
-		return manufacturers.get(0);
+		return manufacturer;
 		
 	}
 

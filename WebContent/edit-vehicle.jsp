@@ -4,22 +4,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sports Teams</title>
+<title>Edit Vehicle</title>
 </head>
 <body>
-	<form action="updateTeam" method="post">
-		City: <input type="text" name="city" value="${team.city}"><br /> 
-		Name: <input type="text" name="name" value="${team.name}"><br /> 
-		League: ${league} <br/><br/>
-<%-- 	    Available Leagues:<br /> 
-	    	<select name="sport" size="6">
-			<c:forEach items="${requestScope.allLeagues}" var="league">
-				<option value="${league.sport}" ${league.sport eq teamToEdit.league.sport ? 'selected' : ''}>${league.sport}</option>
-			</c:forEach>
-		</select> <br /> 
- --%>		
- 		<input type="hidden" name="id" value="${team.id}">
-		<input type="submit" value="Update Team">
+<h2>Edit Vehicle</h2>
+	<form action="editVehicle" method="post">
+		<label>Make</label><br/>
+		<div class="make"> ${vehicle.manufacturer.manufacturerName}</div>
+		<label>Model</label><br/>
+		<input class="model" type="text"   name="model" value="${vehicle.model}"><br /> 
+		<label>Mfg. Date (yyyy/mm/dd)</label><br/>
+		<input class="date"  type="text"   name="date"  value="${vehicle.manDate}"><br/>
+		<label>Color</label><br/>
+		<input class="color" type="text"   name="color" value="${vehicle.color}"><br/>
+		<label>Trans. (auto/manual)</label><br/>
+		<input class="trans" type="text"   name="trans" value="${vehicle.trans}"><br/>
+		<label>Seats</label><br/>
+		<input class="seats" type="text"   name="seats" value="${vehicle.seats}"><br/>
+		<label>MPG</label><br/>
+		<input class="mpg"   type="text"   name="mpg"   value="${vehicle.mpg}"><br/>
+ 		<input               type="hidden" name="vinId" value="${vehicle.vinId}">
+		
+		<input type="submit" value="Update Vehicle">
 	</form>
 	<br/>
 	<a href="index.html">Main Menu</a>

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import model.Vehicle;
 /**
  * Servlet implementation class AddVehicleServlet
  */
-@WebServlet("/addVehicleServlet")
+@WebServlet("/addVehicle")
 public class AddVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private VehicleHelper vh;
@@ -36,7 +37,8 @@ public class AddVehicleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String make = request.getParameter("make").trim();
+		int manId = Integer.parseInt(request.getParameter("make").trim());
+		Manufacturer manufacturer = mh.findById(manId);
 		String model = request.getParameter("model").trim();
 		String date = request.getParameter("date").trim().replace('/', '-');
 		LocalDate manDate = LocalDate.parse(date);
@@ -55,15 +57,21 @@ public class AddVehicleServlet extends HttpServlet {
 			mpg = new BigDecimal(0.0);
 		}
 		
-		Manufacturer manufacturer = mh.findManufacturer(make);
 		Vehicle vehicle = new Vehicle(model, manDate, color, trans, seats, mpg, manufacturer);
 		vh.save(vehicle);
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		
+		List<Vehicle> vehicles = vh.findAll();
+		request.setAttribute("vehicles", vehicles);
+		String path = "/vehicle-list.jsp";
+		if (vehicles.isEmpty()) path = "/index.html";
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 	/**
 	 * @see HttpServlet#doGett(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		List<Manufacturer> manufacturers = mh.findAll();
+		request.setAttribute("mfgrs", manufacturers);
+		getServletContext().getRequestDispatcher("/add-vehicle.jsp").forward(request, response);
 	}
 }
